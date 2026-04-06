@@ -23,8 +23,24 @@ def dealers_by_state(request, state):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def dealer_by_id(request, dealer_id):
-    """API view to retrieve a specific dealer by ID"""
+def fetch_dealer_by_id(request, dealer_id):
+    """API view to retrieve a specific dealer by ID with required format"""
     dealer = get_object_or_404(Dealer, id=dealer_id)
-    serializer = DealerSerializer(dealer)
-    return Response(serializer.data)
+    
+    formatted_dealer = {
+        'id': dealer.id,
+        'name': dealer.name,
+        'short_name': dealer.name.split()[0],  # First word as short name
+        'full_name': dealer.name,
+        'city': dealer.city,
+        'state': dealer.state,
+        'address': dealer.address,
+        'zip': dealer.zip_code,
+        'phone': dealer.phone,
+        'email': dealer.email,
+        'website': dealer.website,
+        'latitude': dealer.latitude,
+        'longitude': dealer.longitude
+    }
+    
+    return Response(formatted_dealer)

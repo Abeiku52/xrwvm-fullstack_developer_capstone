@@ -1,0 +1,11 @@
+# After creating the GitHub repository, run these commands:
+
+# Add the GitHub remote (replace with your actual repository URL)
+git remote add origin https://github.com/Abeiku52/car-dealership.git
+
+# Push the code to GitHub
+git branch -M main
+git push -u origin main
+
+# Verify the push was successful
+git remote -v

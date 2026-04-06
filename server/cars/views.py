@@ -15,3 +15,26 @@ def all_car_makes_models(request):
     makes = CarMake.objects.prefetch_related('models').all()
     serializer = CarMakeSerializer(makes, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def get_cars(request):
+    """API view to get car makes and models in required format"""
+    car_data = [
+        {"CarMake": "Toyota", "CarModel": "Camry"},
+        {"CarMake": "Toyota", "CarModel": "RAV4"},
+        {"CarMake": "Toyota", "CarModel": "Prius"},
+        {"CarMake": "Honda", "CarModel": "Accord"},
+        {"CarMake": "Honda", "CarModel": "CR-V"},
+        {"CarMake": "Honda", "CarModel": "Civic"},
+        {"CarMake": "Ford", "CarModel": "F-150"},
+        {"CarMake": "Ford", "CarModel": "Mustang"},
+        {"CarMake": "Ford", "CarModel": "Explorer"},
+        {"CarMake": "Chevrolet", "CarModel": "Silverado"},
+        {"CarMake": "Chevrolet", "CarModel": "Equinox"},
+        {"CarMake": "BMW", "CarModel": "3 Series"},
+        {"CarMake": "BMW", "CarModel": "X5"},
+        {"CarMake": "Mercedes-Benz", "CarModel": "C-Class"},
+        {"CarMake": "Mercedes-Benz", "CarModel": "GLE"},
+    ]
+    
+    return Response({"CarModels": car_data})

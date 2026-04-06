@@ -110,18 +110,26 @@ def submit_review(request, dealer_id):
             'message': str(e)
         }, status=status.HTTP_400_BAD_REQUEST)
 
-def analyze_sentiment_simple(text):
-    """Simple sentiment analysis based on keywords"""
-    text_lower = text.lower()
-    positive_words = ['excellent', 'great', 'good', 'amazing', 'fantastic', 'wonderful', 'outstanding', 'perfect', 'love', 'best']
-    negative_words = ['bad', 'terrible', 'awful', 'horrible', 'worst', 'hate', 'poor', 'disappointing', 'rude']
+@api_view(['GET'])
+def fetch_dealer_reviews(request, dealer_id):
+    """Get all reviews for a specific dealer with required format"""
+    reviews = Review.objects.filter(dealer_id=dealer_id)
     
-    positive_count = sum(1 for word in positive_words if word in text_lower)
-    negative_count = sum(1 for word in negative_words if word in text_lower)
+    formatted_reviews = []
+    for review in reviews:
+        formatted_review = {
+            'id': review.id,
+            'name': review.user.get_full_name() or review.user.username,
+            'dealership': review.dealer.name,
+            'review': review.review_text,
+            'purchase': True if review.car_make else False,
+            'purchase_date': review.purchase_date.isoformat() if review.purchase_date else None,
+            'car_make': review.car_make,
+            'car_model': review.car_model,
+            'car_year': review.car_year,
+            'sentiment': review.sentiment,
+            'rating': review.rating
+        }
+        formatted_reviews.append(formatted_review)
     
-    if positive_count > negative_count:
-        return 'positive'
-    elif negative_count > positive_count:
-        return 'negative'
-    else:
-        return 'neutral'
+    return Response(formatted_reviews)

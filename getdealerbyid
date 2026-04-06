@@ -1,24 +1,5 @@
-cURL command to get dealer by ID:
+cURL Command:
+curl -X GET http://127.0.0.1:8000/api/dealers/fetchDealer/1/
 
-$ curl -X GET http://127.0.0.1:8000/api/dealers/id/1/ \
-  -H "Content-Type: application/json"
-
-Response:
-{
-  "id": 1,
-  "name": "Premium Auto Kansas City",
-  "city": "Kansas City",
-  "state": "Kansas",
-  "address": "1234 Auto Plaza Drive, Kansas City, KS 66101",
-  "zip_code": "66101",
-  "phone": "(913) 555-0123",
-  "email": "info@premiumautokc.com",
-  "website": "https://www.premiumautokc.com",
-  "latitude": "39.114053",
-  "longitude": "-94.627464",
-  "created_at": "2024-01-15T09:00:00Z",
-  "updated_at": "2024-04-01T12:00:00Z"
-}
-
-HTTP Status: 200 OK
-Dealer details retrieved successfully for ID: 1
+Output:
+{"id":1,"name":"Premium Auto Kansas City","short_name":"Premium","full_name":"Premium Auto Kansas City","city":"Kansas City","state":"Kansas","address":"1234 Auto Plaza Drive, Kansas City, KS 66101","zip":"66101","phone":"(913) 555-0123","email":"info@premiumautokc.com","website":"https://www.premiumautokc.com","latitude":39.114053,"longitude":-94.627464}

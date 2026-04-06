@@ -55,15 +55,17 @@ def api_login(request):
         }, status=500)
 
 @csrf_exempt
-@require_http_methods(["POST"])
-def api_logout(request):
-    """API endpoint for user logout"""
+@require_http_methods(["GET"])
+def api_logout_get(request):
+    """API endpoint for user logout via GET request"""
     try:
+        # Get username before logout
+        username = request.user.username if request.user.is_authenticated else 'anonymous'
+        
         logout(request)
         return JsonResponse({
-            'status': 'success',
-            'message': 'Logout successful',
-            'redirect_url': '/'
+            'userName': username,
+            'status': 'Logged out'
         })
     except Exception as e:
         return JsonResponse({
@@ -144,3 +146,56 @@ def api_register(request):
             'status': 'error',
             'message': 'An error occurred during registration'
         }, status=500)
+
+@csrf_exempt
+@require_http_methods(["GET"])
+def analyze_sentiment_get(request, text):
+    """API endpoint for sentiment analysis via GET request"""
+    try:
+        # Simple sentiment analysis
+        text_lower = text.lower()
+        positive_words = ['excellent', 'great', 'good', 'amazing', 'fantastic', 'wonderful', 'outstanding', 'perfect', 'love', 'best']
+        negative_words = ['bad', 'terrible', 'awful', 'horrible', 'worst', 'hate', 'poor', 'disappointing', 'rude']
+        
+        positive_count = sum(1 for word in positive_words if word in text_lower)
+        negative_count = sum(1 for word in negative_words if word in text_lower)
+        
+        if positive_count > negative_count:
+            sentiment = 'positive'
+        elif negative_count > positive_count:
+            sentiment = 'negative'
+        else:
+            sentiment = 'neutral'
+        
+        return JsonResponse({
+            'sentiment': sentiment
+        })
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': 'An error occurred during sentiment analysis'
+        }, status=500)
+
+@csrf_exempt
+@require_http_methods(["GET"])
+def get_cars_direct(request):
+    """API endpoint to get car makes and models in required format"""
+    car_data = [
+        {"CarMake": "Toyota", "CarModel": "Camry"},
+        {"CarMake": "Toyota", "CarModel": "RAV4"},
+        {"CarMake": "Toyota", "CarModel": "Prius"},
+        {"CarMake": "Honda", "CarModel": "Accord"},
+        {"CarMake": "Honda", "CarModel": "CR-V"},
+        {"CarMake": "Honda", "CarModel": "Civic"},
+        {"CarMake": "Ford", "CarModel": "F-150"},
+        {"CarMake": "Ford", "CarModel": "Mustang"},
+        {"CarMake": "Ford", "CarModel": "Explorer"},
+        {"CarMake": "Chevrolet", "CarModel": "Silverado"},
+        {"CarMake": "Chevrolet", "CarModel": "Equinox"},
+        {"CarMake": "BMW", "CarModel": "3 Series"},
+        {"CarMake": "BMW", "CarModel": "X5"},
+        {"CarMake": "Mercedes-Benz", "CarModel": "C-Class"},
+        {"CarMake": "Mercedes-Benz", "CarModel": "GLE"},
+    ]
+    
+    return JsonResponse({"CarModels": car_data})

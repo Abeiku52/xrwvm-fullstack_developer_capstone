@@ -1,0 +1,3 @@
+Task 3: GitHub URL for About.html
+
+https://github.com/Abeiku52/Car-dealership/blob/main/server/frontend/static/About.html

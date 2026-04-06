@@ -1,20 +1,5 @@
-cURL command for user logout:
+cURL Command:
+curl -X GET http://127.0.0.1:8000/djangoapp/logout/
 
-$ curl -X POST http://127.0.0.1:8000/api/auth/logout/ \
-  -H "Content-Type: application/json" \
-  -H "X-CSRFToken: xyz789abc123def456ghi" \
-  -H "Cookie: sessionid=abc123def456ghi789jkl012; csrftoken=xyz789abc123def456ghi"
-
-Response:
-{
-  "status": "success",
-  "message": "Logout successful",
-  "redirect_url": "/"
-}
-
-HTTP Status: 200 OK
-Set-Cookie: sessionid=""; expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=Lax
-Set-Cookie: csrftoken=""; expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=Lax
-
-User session terminated successfully.
-All authentication cookies cleared.
+Output:
+{"userName": "anonymous", "status": "Logged out"}
