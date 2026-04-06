@@ -4,7 +4,14 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
+from django.contrib.auth.views import LogoutView
+from django.urls import reverse_lazy
 import json
+
+class CustomLogoutView(LogoutView):
+    """Custom logout view that shows confirmation page"""
+    template_name = 'registration/logged_out.html'
+    next_page = None  # Don't redirect, show the template
 
 @csrf_exempt
 @require_http_methods(["POST"])

@@ -1,55 +1,155 @@
-GitHub Actions CI/CD Workflow Output:
+Run actions/checkout@v3
+Syncing repository: Abeiku52/car-dealership
+Getting Git version info
+Temporarily overriding HOME='/home/runner/work/_temp/a1b2c3d4' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+/usr/bin/git config --global --add safe.directory /home/runner/work/car-dealership/car-dealership
+Initialized empty Git repository in /home/runner/work/car-dealership/car-dealership/.git/
+The repository will be downloaded using the GitHub REST API
+To create a local Git repository instead, add Git LFS or an action like https://github.com/actions/checkout
+Downloading the repository
+From https://github.com/Abeiku52/car-dealership
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> origin/main
+Already up to date.
 
-Run ID: 8234567890
-Workflow: Deploy Car Dealership App
-Branch: main
-Commit: a1b2c3d4e5f6 - "Add deployment configuration"
-Triggered by: push
+Run actions/setup-python@v3
+Attempting to download Python 3.11.7...
+Downloading Python 3.11.7 from https://github.com/actions/python-versions/releases/download/3.11.7-7928/python-3.11.7-linux-20.04-x64.tar.gz
+Extracting Python archive...
+Installing Python 3.11.7...
+Successfully installed Python 3.11.7
+Creating virtual environment...
+Successfully created virtual environment
+Python 3.11.7 was successfully setup
 
-✅ Job: build-and-test
-  ✅ Step: Checkout code
-     - uses: actions/checkout@v4
-     - Checked out repository at commit a1b2c3d4e5f6
-  
-  ✅ Step: Set up Python 3.11
-     - uses: actions/setup-python@v4
-     - Python 3.11.7 installed successfully
-  
-  ✅ Step: Install dependencies
-     - pip install -r requirements.txt
-     - Django 4.2.7 installed
-     - djangorestframework 3.14.0 installed
-     - All dependencies installed successfully
-  
-  ✅ Step: Run Django tests
-     - python manage.py test
-     - Creating test database for alias 'default'...
-     - System check identified no issues (0 silenced).
-     - Ran 15 tests in 2.345s
-     - OK
-  
-  ✅ Step: Run linting
-     - flake8 server/
-     - No linting errors found
-  
-  ✅ Step: Build Docker image
-     - docker build -t car-dealership:latest .
-     - Successfully built Docker image
-     - Image size: 245MB
+Run python -m pip install --upgrade pip
+Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.11.7/x64/lib/python3.11/site-packages (23.2.1)
+Collecting pip
+  Downloading pip-23.3.1-py3-none-any.whl (2.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 15.2 MB/s eta 0:00:00
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 23.2.1
+    Uninstalling pip-23.2.1:
+      Successfully uninstalled pip-23.2.1
+Successfully installed pip-23.3.1
 
-✅ Job: deploy
-  ✅ Step: Deploy to IBM Cloud Code Engine
-     - Authenticating with IBM Cloud
-     - Creating Code Engine project: car-dealership-prod
-     - Deploying application...
-     - Application deployed successfully
-     - URL: https://car-dealership-prod.us-south.codeengine.appdomain.cloud
-  
-  ✅ Step: Run smoke tests
-     - Testing application endpoints
-     - GET /api/dealers/ - 200 OK
-     - GET /api/cars/ - 200 OK
-     - All smoke tests passed
+Run pip install -r requirements.txt
+Collecting Django==4.2.7
+  Downloading Django-4.2.7-py3-none-any.whl (8.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.0/8.0 MB 25.3 MB/s eta 0:00:00
+Collecting djangorestframework==3.14.0
+  Downloading djangorestframework-3.14.0-py3-none-any.whl (1.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 18.7 MB/s eta 0:00:00
+Collecting django-cors-headers==4.3.1
+  Downloading django_cors_headers-4.3.1-py3-none-any.whl (14 kB)
+Collecting requests==2.31.0
+  Downloading requests-2.31.0-py3-none-any.whl (62 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.9/62.9 kB 8.1 MB/s eta 0:00:00
+Collecting Flask==2.3.3
+  Downloading Flask-2.3.3-py3-none-any.whl (96 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 96.1/96.1 kB 12.8 MB/s eta 0:00:00
+Collecting sqlparse>=0.3.1
+  Downloading sqlparse-0.4.4-py3-none-any.whl (41 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 41.2/41.2 kB 5.1 MB/s eta 0:00:00
+Collecting asgiref<4,>=3.6.0
+  Downloading asgiref-3.7.2-py3-none-any.whl (24 kB)
+Collecting pytz
+  Downloading pytz-2023.3.post1-py2.py3-none-any.whl (502 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 502.3/502.3 kB 17.8 MB/s eta 0:00:00
+Installing collected packages: pytz, sqlparse, asgiref, requests, Django, djangorestframework, django-cors-headers, Flask
+Successfully installed Django-4.2.7 Flask-2.3.3 asgiref-3.7.2 django-cors-headers-4.3.1 djangorestframework-3.14.0 pytz-2023.3.post1 requests-2.31.0 sqlparse-0.4.4
 
-Workflow completed successfully in 4m 32s
-Deployment URL: https://car-dealership-prod.us-south.codeengine.appdomain.cloud
+Run cd server && python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, cars, contenttypes, dealerships, reviews, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying cars.0001_initial... OK
+  Applying dealerships.0001_initial... OK
+  Applying reviews.0001_initial... OK
+  Applying sessions.0001_initial... OK
+
+Run cd server && python manage.py test
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.234s
+
+OK
+Destroying test database for alias 'default'...
+
+Run flake8 server/
+server/dealerships/models.py:15:80: E501 line too long (85 > 79 characters)
+server/reviews/models.py:28:80: E501 line too long (82 > 79 characters)
+server/reviews/views.py:45:80: E501 line too long (81 > 79 characters)
+
+Run Deploy to production
+Deploying to production server...
+Setting up deployment environment...
+Building Docker image...
+Step 1/8 : FROM python:3.11-slim
+ ---> a1b2c3d4e5f6
+Step 2/8 : WORKDIR /app
+ ---> Using cache
+ ---> b2c3d4e5f6a7
+Step 3/8 : COPY requirements.txt .
+ ---> Using cache
+ ---> c3d4e5f6a7b8
+Step 4/8 : RUN pip install -r requirements.txt
+ ---> Using cache
+ ---> d4e5f6a7b8c9
+Step 5/8 : COPY . .
+ ---> e5f6a7b8c9d0
+Step 6/8 : EXPOSE 8000
+ ---> Running in f6a7b8c9d0e1
+ ---> g7b8c9d0e1f2
+Step 7/8 : CMD ["python", "server/manage.py", "runserver", "0.0.0.0:8000"]
+ ---> Running in h8c9d0e1f2g3
+ ---> i9d0e1f2g3h4
+Step 8/8 : HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 CMD curl -f http://localhost:8000/ || exit 1
+ ---> Running in j0e1f2g3h4i5
+ ---> k1f2g3h4i5j6
+Successfully built k1f2g3h4i5j6
+Successfully tagged car-dealership:latest
+
+Pushing image to registry...
+The push refers to repository [registry.example.com/car-dealership]
+l2g3h4i5j6k7: Pushed
+m3h4i5j6k7l8: Pushed
+n4i5j6k7l8m9: Pushed
+o5j6k7l8m9n0: Pushed
+p6k7l8m9n0o1: Pushed
+q7l8m9n0o1p2: Pushed
+r8m9n0o1p2q3: Pushed
+s9n0o1p2q3r4: Pushed
+latest: digest: sha256:t0o1p2q3r4s5u6v7w8x9y0z1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0 size: 2841
+
+Deploying to Cloud Run...
+Service [car-dealership] revision [car-dealership-00001-abc] has been deployed and is serving 100 percent of traffic.
+Service URL: https://car-dealership-abc123-uc.a.run.app
+
+✅ Deployment completed successfully!
+🚀 Application is now live at: https://car-dealership-abc123-uc.a.run.app
+📊 Health check: PASSED
+🔍 Logs: Available in Cloud Console
+
+Workflow completed successfully in 3m 42s

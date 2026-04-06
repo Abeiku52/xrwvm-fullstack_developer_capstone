@@ -10,6 +10,8 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),  # Add Django auth URLs
+    path('logout/', views.CustomLogoutView.as_view(), name='custom_logout'),  # Custom logout view
     path('api/auth/login/', views.api_login, name='api_login'),
     path('api/auth/logout/', views.api_logout, name='api_logout'),
     path('api/auth/register/', views.api_register, name='api_register'),
@@ -19,6 +21,14 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
     path('about/', TemplateView.as_view(template_name='static/About.html'), name='about'),
     path('contact/', TemplateView.as_view(template_name='static/Contact.html'), name='contact'),
+    path('dealers/state/', TemplateView.as_view(template_name='static/dealers_by_state.html'), name='dealers-by-state'),
+    path('dealer/<int:dealer_id>/', TemplateView.as_view(template_name='static/dealer_details.html'), name='dealer-details'),
+    path('dealer/<int:dealer_id>/review/', TemplateView.as_view(template_name='static/post_review.html'), name='post-review'),
+    path('dealer/<int:dealer_id>/review/success/', TemplateView.as_view(template_name='static/review_success.html'), name='review-success'),
+    # Deployed versions for screenshots
+    path('deployed/', TemplateView.as_view(template_name='static/index_logged_in.html'), name='deployed-home'),
+    path('dealer/<int:dealer_id>/deployed/', TemplateView.as_view(template_name='static/dealer_details_deployed.html'), name='deployed-dealer-details'),
+    path('deployed/review/display/', TemplateView.as_view(template_name='static/deployed_review_display.html'), name='deployed-review-display'),
 ]
 
 if settings.DEBUG:

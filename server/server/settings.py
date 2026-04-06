@@ -47,7 +47,10 @@ ROOT_URLCONF = 'server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'frontend'],
+        'DIRS': [
+            BASE_DIR / 'frontend',
+            BASE_DIR / 'frontend' / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,6 +123,9 @@ REST_FRAMEWORK = {
 }
 
 # Login/Logout URLs
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = '/admin/login/'
+LOGIN_REDIRECT_URL = '/admin/'
+# LOGOUT_REDIRECT_URL = '/admin/logout/'  # Commented out to show logout confirmation page
+
+# Admin logout settings
+# ADMIN_LOGOUT_URL = '/admin/logout/'  # Commented out to use default behavior

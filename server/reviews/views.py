@@ -1,8 +1,9 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
 from dealerships.models import Dealer
 from .models import Review
 from .serializers import ReviewSerializer
@@ -51,3 +52,76 @@ def dealer_reviews(request, dealer_id):
     reviews = Review.objects.filter(dealer_id=dealer_id)
     serializer = ReviewSerializer(reviews, many=True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def submit_review(request, dealer_id):
+    """Submit a new review for a dealer"""
+    try:
+        dealer = get_object_or_404(Dealer, id=dealer_id)
+        
+        # Get or create a default user for demo purposes
+        user, created = User.objects.get_or_create(
+            username='demo_user',
+            defaults={
+                'first_name': 'Demo',
+                'last_name': 'User',
+                'email': 'demo@example.com'
+            }
+        )
+        
+        # Get review data
+        data = request.data
+        review_text = data.get('review_text', '')
+        rating = int(data.get('rating', 5))
+        car_make = data.get('car_make', '')
+        car_model = data.get('car_model', '')
+        car_year = data.get('car_year')
+        reviewer_name = data.get('reviewer_name', 'Anonymous')
+        
+        # Analyze sentiment
+        sentiment = analyze_sentiment_simple(review_text)
+        
+        # Delete existing review from demo_user to avoid unique constraint
+        Review.objects.filter(dealer=dealer, user=user).delete()
+        
+        # Create review
+        review = Review.objects.create(
+            dealer=dealer,
+            user=user,
+            rating=rating,
+            review_text=review_text,
+            car_make=car_make,
+            car_model=car_model,
+            car_year=int(car_year) if car_year else None,
+            sentiment=sentiment
+        )
+        
+        serializer = ReviewSerializer(review)
+        return Response({
+            'status': 'success',
+            'message': 'Review submitted successfully',
+            'review': serializer.data
+        }, status=status.HTTP_201_CREATED)
+        
+    except Exception as e:
+        return Response({
+            'status': 'error',
+            'message': str(e)
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+def analyze_sentiment_simple(text):
+    """Simple sentiment analysis based on keywords"""
+    text_lower = text.lower()
+    positive_words = ['excellent', 'great', 'good', 'amazing', 'fantastic', 'wonderful', 'outstanding', 'perfect', 'love', 'best']
+    negative_words = ['bad', 'terrible', 'awful', 'horrible', 'worst', 'hate', 'poor', 'disappointing', 'rude']
+    
+    positive_count = sum(1 for word in positive_words if word in text_lower)
+    negative_count = sum(1 for word in negative_words if word in text_lower)
+    
+    if positive_count > negative_count:
+        return 'positive'
+    elif negative_count > positive_count:
+        return 'negative'
+    else:
+        return 'neutral'

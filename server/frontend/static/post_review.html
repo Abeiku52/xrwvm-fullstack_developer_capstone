@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Review - Car Dealership</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">Car Dealership</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about/">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact/">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <!-- Dealer Information -->
+                <div class="card mb-4">
+                    <div class="card-body" id="dealer-info">
+                        <div class="text-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading dealer information...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Form -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Write a Review</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="review-form">
+                            <!-- Rating -->
+                            <div class="mb-3">
+                                <label class="form-label">Overall Rating *</label>
+                                <div class="rating-container">
+                                    <div class="star-rating">
+                                        <input type="radio" id="star5" name="rating" value="5" required>
+                                        <label for="star5" title="5 stars">★</label>
+                                        <input type="radio" id="star4" name="rating" value="4">
+                                        <label for="star4" title="4 stars">★</label>
+                                        <input type="radio" id="star3" name="rating" value="3">
+                                        <label for="star3" title="3 stars">★</label>
+                                        <input type="radio" id="star2" name="rating" value="2">
+                                        <label for="star2" title="2 stars">★</label>
+                                        <input type="radio" id="star1" name="rating" value="1">
+                                        <label for="star1" title="1 star">★</label>
+                                    </div>
+                                    <span id="rating-text" class="ms-3 text-muted">Select a rating</span>
+                                </div>
+                            </div>
+
+                            <!-- Review Text -->
+                            <div class="mb-3">
+                                <label for="review-text" class="form-label">Your Review *</label>
+                                <textarea class="form-control" id="review-text" name="review_text" rows="5" 
+                                    placeholder="Share your experience with this dealership..." required></textarea>
+                                <div class="form-text">Minimum 10 characters required</div>
+                            </div>
+
+                            <!-- Car Information -->
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="car-make" class="form-label">Car Make</label>
+                                    <select class="form-select" id="car-make" name="car_make">
+                                        <option value="">Select Make</option>
+                                        <option value="Toyota">Toyota</option>
+                                        <option value="Honda">Honda</option>
+                                        <option value="Ford">Ford</option>
+                                        <option value="Chevrolet">Chevrolet</option>
+                                        <option value="BMW">BMW</option>
+                                        <option value="Mercedes-Benz">Mercedes-Benz</option>
+                                        <option value="Audi">Audi</option>
+                                        <option value="Nissan">Nissan</option>
+                                        <option value="Hyundai">Hyundai</option>
+                                        <option value="Kia">Kia</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="car-model" class="form-label">Car Model</label>
+                                    <input type="text" class="form-control" id="car-model" name="car_model" 
+                                        placeholder="e.g., Camry, Accord">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="car-year" class="form-label">Year</label>
+                                    <select class="form-select" id="car-year" name="car_year">
+                                        <option value="">Select Year</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2015">2015</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Purchase Type -->
+                            <div class="mb-3">
+                                <label class="form-label">Purchase Type</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="purchase_type" id="purchase" value="purchase">
+                                    <label class="form-check-label" for="purchase">Purchase</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="purchase_type" id="lease" value="lease">
+                                    <label class="form-check-label" for="lease">Lease</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="purchase_type" id="service" value="service">
+                                    <label class="form-check-label" for="service">Service Only</label>
+                                </div>
+                            </div>
+
+                            <!-- Reviewer Name -->
+                            <div class="mb-3">
+                                <label for="reviewer-name" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="reviewer-name" name="reviewer_name" 
+                                    placeholder="Enter your name (optional)">
+                            </div>
+
+                            <!-- Submit Buttons -->
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" onclick="history.back()">Cancel</button>
+                                <button type="submit" class="btn btn-success" id="submit-btn">Submit Review</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Success Message -->
+                <div id="success-message" class="alert alert-success mt-3" style="display: none;">
+                    <h5>Review Submitted Successfully!</h5>
+                    <p>Thank you for your feedback. Your review will help other customers make informed decisions.</p>
+                    <button class="btn btn-primary" onclick="goBackToDealer()">Back to Dealer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .star-rating {
+            display: inline-flex;
+            flex-direction: row-reverse;
+        }
+        
+        .star-rating input[type="radio"] {
+            display: none;
+        }
+        
+        .star-rating label {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .star-rating input[type="radio"]:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #ffc107;
+        }
+        
+        .rating-container {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let currentDealerId = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get dealer ID from URL
+            const pathParts = window.location.pathname.split('/');
+            const dealerIndex = pathParts.indexOf('dealer');
+            if (dealerIndex !== -1 && pathParts[dealerIndex + 1]) {
+                currentDealerId = pathParts[dealerIndex + 1];
+                loadDealerInfo(currentDealerId);
+            } else {
+                showError('Dealer ID not found in URL');
+            }
+
+            // Rating change event
+            const ratingInputs = document.querySelectorAll('input[name="rating"]');
+            ratingInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    updateRatingText(this.value);
+                });
+            });
+
+            // Form submission
+            document.getElementById('review-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitReview();
+            });
+        });
+
+        async function loadDealerInfo(dealerId) {
+            try {
+                const response = await fetch(`/api/dealers/${dealerId}/`);
+                if (!response.ok) {
+                    throw new Error('Dealer not found');
+                }
+                const dealer = await response.json();
+                displayDealerInfo(dealer);
+            } catch (error) {
+                console.error('Error loading dealer info:', error);
+                document.getElementById('dealer-info').innerHTML = `
+                    <div class="alert alert-danger" role="alert">
+                        Failed to load dealer information: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        function displayDealerInfo(dealer) {
+            document.title = `Review ${dealer.name} - Car Dealership`;
+            document.getElementById('dealer-info').innerHTML = `
+                <div class="d-flex align-items-center">
+                    <div class="me-3">
+                        <i class="fas fa-building fa-2x text-primary"></i>
+                    </div>
+                    <div>
+                        <h5 class="mb-1">Writing review for: ${dealer.name}</h5>
+                        <p class="mb-0 text-muted">${dealer.city}, ${dealer.state}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateRatingText(rating) {
+            const ratingTexts = {
+                '1': 'Poor',
+                '2': 'Fair',
+                '3': 'Good',
+                '4': 'Very Good',
+                '5': 'Excellent'
+            };
+            document.getElementById('rating-text').textContent = ratingTexts[rating] || 'Select a rating';
+        }
+
+        async function submitReview() {
+            const form = document.getElementById('review-form');
+            const formData = new FormData(form);
+            const submitBtn = document.getElementById('submit-btn');
+            
+            // Validate required fields
+            const rating = formData.get('rating');
+            const reviewText = formData.get('review_text');
+            
+            if (!rating) {
+                alert('Please select a rating');
+                return;
+            }
+            
+            if (!reviewText || reviewText.length < 10) {
+                alert('Please enter a review with at least 10 characters');
+                return;
+            }
+
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            try {
+                // Prepare review data
+                const reviewData = {
+                    rating: parseInt(rating),
+                    review_text: reviewText,
+                    car_make: formData.get('car_make') || '',
+                    car_model: formData.get('car_model') || '',
+                    car_year: formData.get('car_year') || '',
+                    purchase_type: formData.get('purchase_type') || '',
+                    reviewer_name: formData.get('reviewer_name') || 'Anonymous'
+                };
+
+                // Submit review to API
+                const response = await fetch(`/api/reviews/${currentDealerId}/submit/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    body: JSON.stringify(reviewData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    // Redirect to success page
+                    window.location.href = `/dealer/${currentDealerId}/review/success/`;
+                } else {
+                    throw new Error(result.message || 'Failed to submit review');
+                }
+                
+            } catch (error) {
+                console.error('Error submitting review:', error);
+                alert('Failed to submit review. Please try again.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Review';
+            }
+        }
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function goBackToDealer() {
+            window.location.href = `/dealer/${currentDealerId}/`;
+        }
+
+        function showError(message) {
+            document.getElementById('dealer-info').innerHTML = `
+                <div class="alert alert-danger" role="alert">
+                    ${message}
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
