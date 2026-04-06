@@ -19,7 +19,7 @@ def api_login(request):
     """API endpoint for user login"""
     try:
         data = json.loads(request.body)
-        username = data.get('username')
+        username = data.get('userName') or data.get('username')  # Support both formats
         password = data.get('password')
         
         if not username or not password:
@@ -33,15 +33,9 @@ def api_login(request):
         if user is not None:
             login(request, user)
             return JsonResponse({
-                'status': 'success',
-                'message': 'Login successful',
-                'user': {
-                    'id': user.id,
-                    'username': user.username,
-                    'first_name': user.first_name,
-                    'last_name': user.last_name,
-                    'email': user.email
-                }
+                'userName': user.username,
+                'status': 'Authenticated',
+                'sessionid': request.session.session_key
             })
         else:
             return JsonResponse({

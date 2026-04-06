@@ -1,28 +1,11 @@
-cURL command for user login:
-
-$ curl -X POST http://127.0.0.1:8000/api/auth/login/ \
+cURL Command:
+curl -X POST http://127.0.0.1:8000/api/auth/login/ \
   -H "Content-Type: application/json" \
-  -H "X-CSRFToken: abc123def456ghi789" \
   -d '{
-    "username": "testuser",
+    "userName": "testuser",
     "password": "testpass123"
-  }'
+  }' \
+  -c cookies.txt
 
-Response:
-{
-  "status": "success",
-  "message": "Login successful",
-  "user": {
-    "id": 1,
-    "username": "testuser",
-    "first_name": "Test",
-    "last_name": "User",
-    "email": "testuser@example.com"
-  },
-  "session_id": "abc123def456ghi789jkl012",
-  "csrf_token": "xyz789abc123def456ghi"
-}
-
-HTTP Status: 200 OK
-Set-Cookie: sessionid=abc123def456ghi789jkl012; HttpOnly; Path=/; SameSite=Lax
-Set-Cookie: csrftoken=xyz789abc123def456ghi; Path=/; SameSite=Lax
+Output:
+{"userName": "testuser", "status": "Authenticated", "sessionid": "r3eq3sn8len5go6rbl51ya40ioudwyov"}
