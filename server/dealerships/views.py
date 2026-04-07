@@ -53,6 +53,7 @@ def fetch_dealer_by_id(request, dealer_id):
     dealer = get_object_or_404(Dealer, id=dealer_id)
     
     formatted_dealer = {
+        '_id': dealer.id,  # Add _id field as requested
         'id': dealer.id,
         'name': dealer.name,
         'short_name': dealer.name.split()[0],  # First word as short name
@@ -61,11 +62,14 @@ def fetch_dealer_by_id(request, dealer_id):
         'state': dealer.state,
         'address': dealer.address,
         'zip': dealer.zip_code,
+        'zip_code': dealer.zip_code,  # Include both zip and zip_code
         'phone': dealer.phone,
         'email': dealer.email,
         'website': dealer.website,
         'lat': dealer.latitude,
-        'long': dealer.longitude
+        'long': dealer.longitude,
+        'latitude': dealer.latitude,  # Include both lat/latitude
+        'longitude': dealer.longitude  # Include both long/longitude
     }
     
     return Response(formatted_dealer)

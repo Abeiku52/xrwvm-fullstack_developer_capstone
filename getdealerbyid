@@ -2,4 +2,4 @@ cURL Command:
 curl -X GET http://127.0.0.1:8000/api/dealers/fetchDealer/1/
 
 Output:
-{"id":1,"name":"Premium Auto Kansas City","short_name":"Premium","full_name":"Premium Auto Kansas City","city":"Kansas City","state":"Kansas","address":"1234 Auto Plaza Drive, Kansas City, KS 66101","zip":"66101","phone":"(913) 555-0123","email":"info@premiumautokc.com","website":"https://www.premiumautokc.com","lat":39.114053,"long":-94.627464}
+{"_id":1,"id":1,"name":"Premium Auto Kansas City","short_name":"Premium","full_name":"Premium Auto Kansas City","city":"Kansas City","state":"Kansas","address":"1234 Auto Plaza Drive, Kansas City, KS 66101","zip":"66101","zip_code":"66101","phone":"(913) 555-0123","email":"info@premiumautokc.com","website":"https://www.premiumautokc.com","lat":39.114053,"long":-94.627464,"latitude":39.114053,"longitude":-94.627464}
