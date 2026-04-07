@@ -1,43 +1,5 @@
 cURL Command:
-curl -X GET http://127.0.0.1:8000/api/reviews/1/
+curl -X GET http://127.0.0.1:8000/fetchReviews/dealer/1
 
 Output:
-[{"id":4,"dealer":1,"dealer_name":"Premium Auto Kansas City","user":5,"user_name":"demo_user","rating":5,"review_text":"Outstanding dealership! The team went above and beyond to help me find the perfect car. Highly recommended!","purchase_date":null,"car_make":"Honda","car_model":"Accord","car_year":2024,"sentiment":"positive","created_at":"2026-04-06T12:53:37.261292Z","updated_at":"2026-04-06T12:53:37.261546Z"},{"id":2,"dealer":1,"dealer_name":"Premium Auto Kansas City","user":4,"user_name":"sarah_smith","rating":4,"review_text":"Good experience overall. The sales team was knowledgeable and the process was smooth. Minor wait time but worth it for the quality of service.","purchase_date":"2024-03-20","car_make":"Honda","car_model":"Accord","car_year":2023,"sentiment":"positive","created_at":"2026-04-06T11:50:18.768190Z","updated_at":"2026-04-06T11:50:18.768198Z"},{"id":1,"dealer":1,"dealer_name":"Premium Auto Kansas City","user":3,"user_name":"john_doe","rating":5,"review_text":"Fantastic services! The staff was incredibly helpful and professional. I found the perfect car at a great price. Highly recommend this dealership to anyone looking for quality vehicles and excellent customer service.","purchase_date":"2024-03-15","car_make":"Toyota","car_model":"Camry","car_year":2024,"sentiment":"positive","created_at":"2026-04-06T11:50:18.767047Z","updated_at":"2026-04-06T11:50:18.767054Z"}]
-Response:
-[
-  {
-    "id": 1,
-    "dealer": 1,
-    "dealer_name": "Premium Auto Kansas City",
-    "user": 2,
-    "user_name": "john_doe",
-    "rating": 5,
-    "review_text": "Fantastic services! The staff was incredibly helpful and professional. I found the perfect car at a great price. Highly recommend this dealership to anyone looking for quality vehicles and excellent customer service.",
-    "purchase_date": "2024-03-15",
-    "car_make": "Toyota",
-    "car_model": "Camry",
-    "car_year": 2024,
-    "sentiment": "positive",
-    "created_at": "2024-04-01T10:30:00Z",
-    "updated_at": "2024-04-01T10:30:00Z"
-  },
-  {
-    "id": 2,
-    "dealer": 1,
-    "dealer_name": "Premium Auto Kansas City",
-    "user": 3,
-    "user_name": "sarah_smith",
-    "rating": 4,
-    "review_text": "Good experience overall. The sales team was knowledgeable and the process was smooth. Minor wait time but worth it for the quality of service.",
-    "purchase_date": "2024-03-20",
-    "car_make": "Honda",
-    "car_model": "Accord",
-    "car_year": 2023,
-    "sentiment": "positive",
-    "created_at": "2024-04-02T14:15:00Z",
-    "updated_at": "2024-04-02T14:15:00Z"
-  }
-]
-
-HTTP Status: 200 OK
-Total reviews for dealer ID 1: 2
+[{"id":6,"name":"Demo User","dealership":"Premium Auto Kansas City","review":"I love the car, it's in great condition","purchase":true,"purchase_date":"2024-04-14","car_make":"Honda","car_model":"Accord","car_year":2019,"sentiment":"positive","rating":5},{"id":2,"name":"Sarah Smith","dealership":"Premium Auto Kansas City","review":"Good experience overall. The sales team was knowledgeable and the process was smooth. Minor wait time but worth it for the quality of service.","purchase":true,"purchase_date":"2024-03-20","car_make":"Honda","car_model":"Accord","car_year":2023,"sentiment":"positive","rating":4},{"id":1,"name":"John Doe","dealership":"Premium Auto Kansas City","review":"Fantastic services! The staff was incredibly helpful and professional. I found the perfect car at a great price. Highly recommend this dealership to anyone looking for quality vehicles and excellent customer service.","purchase":true,"purchase_date":"2024-03-15","car_make":"Toyota","car_model":"Camry","car_year":2024,"sentiment":"positive","rating":5}]

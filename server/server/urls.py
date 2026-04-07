@@ -7,12 +7,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from . import views
+from reviews.views import fetch_dealer_reviews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),  # Add Django auth URLs
     path('login/', views.login_page, name='login'),
     path('djangoapp/logout/', views.api_logout_get, name='djangoapp-logout'),
+    path('fetchReviews/dealer/<int:dealer_id>/', fetch_dealer_reviews, name='fetch-dealer-reviews'),
     path('api/auth/login/', views.api_login, name='api_login'),
     path('api/auth/logout/', views.api_logout_get, name='api_logout'),
     path('api/auth/register/', views.api_register, name='api_register'),
