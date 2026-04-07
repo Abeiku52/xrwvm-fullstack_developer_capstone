@@ -9,6 +9,22 @@ from .models import Review
 from .serializers import ReviewSerializer
 import requests
 
+def analyze_sentiment_simple(text):
+    """Simple sentiment analysis"""
+    text_lower = text.lower()
+    positive_words = ['excellent', 'great', 'good', 'amazing', 'fantastic', 'wonderful', 'outstanding', 'perfect', 'love', 'best']
+    negative_words = ['bad', 'terrible', 'awful', 'horrible', 'worst', 'hate', 'poor', 'disappointing', 'rude']
+    
+    positive_count = sum(1 for word in positive_words if word in text_lower)
+    negative_count = sum(1 for word in negative_words if word in text_lower)
+    
+    if positive_count > negative_count:
+        return 'positive'
+    elif negative_count > positive_count:
+        return 'negative'
+    else:
+        return 'neutral'
+
 class ReviewListCreateView(generics.ListCreateAPIView):
     """API view to list and create reviews"""
     serializer_class = ReviewSerializer

@@ -8,6 +8,34 @@ from django.contrib.auth.views import LogoutView
 from django.urls import reverse_lazy
 import json
 
+def home_page(request):
+    """Home page view with login status"""
+    return render(request, 'index.html', {
+        'user': request.user
+    })
+
+def login_page(request):
+    """Login page view"""
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        if username and password:
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                return render(request, 'registration/login.html', {
+                    'error': 'Invalid username or password'
+                })
+        else:
+            return render(request, 'registration/login.html', {
+                'error': 'Please enter both username and password'
+            })
+    
+    return render(request, 'registration/login.html')
+
 class CustomLogoutView(LogoutView):
     """Custom logout view that shows confirmation page"""
     template_name = 'registration/logged_out.html'

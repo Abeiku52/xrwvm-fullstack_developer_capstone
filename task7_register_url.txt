@@ -1,3 +1,3 @@
 Task 7: GitHub URL for Register.jsx
 
-https://github.com/Abeiku52/Car-dealership/blob/main/server/frontend/src/components/Register/Register.jsx
+https://github.com/Abeiku52/xrwvm-fullstack_developer_capstone/blob/main/server/frontend/src/components/Register/Register.jsx

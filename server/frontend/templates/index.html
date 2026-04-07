@@ -24,7 +24,12 @@
                     <a href="/contact/" class="nav-link">Contact</a>
                 </li>
                 <li class="nav-item" id="auth-link">
-                    <a href="/login/" class="nav-link">Login</a>
+                    {% if user.is_authenticated %}
+                        <span class="nav-link username-display">{{ user.username }}</span>
+                        <a href="/accounts/logout/" class="nav-link logout-btn">Logout</a>
+                    {% else %}
+                        <a href="/login/" class="nav-link">Login</a>
+                    {% endif %}
                 </li>
             </ul>
         </div>

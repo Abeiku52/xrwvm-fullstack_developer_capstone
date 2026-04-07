@@ -304,28 +304,37 @@
                     reviewer_name: formData.get('reviewer_name') || 'Anonymous'
                 };
 
+                console.log('Submitting review data:', reviewData);
+                console.log('Dealer ID:', currentDealerId);
+
                 // Submit review to API
                 const response = await fetch(`/api/reviews/${currentDealerId}/submit/`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRFToken': getCookie('csrftoken')
+                        'X-CSRFToken': getCookie('csrftoken') || 'dummy-token'
                     },
                     body: JSON.stringify(reviewData)
                 });
                 
+                console.log('Response status:', response.status);
                 const result = await response.json();
+                console.log('Response data:', result);
                 
-                if (response.ok) {
-                    // Redirect to success page
-                    window.location.href = `/dealer/${currentDealerId}/review/success/`;
+                if (response.ok && result.status === 'success') {
+                    // Show success message
+                    document.getElementById('review-form').style.display = 'none';
+                    document.getElementById('success-message').style.display = 'block';
+                    
+                    // Scroll to success message
+                    document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
                 } else {
                     throw new Error(result.message || 'Failed to submit review');
                 }
                 
             } catch (error) {
                 console.error('Error submitting review:', error);
-                alert('Failed to submit review. Please try again.');
+                alert(`Failed to submit review: ${error.message}. Please try again.`);
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Submit Review';

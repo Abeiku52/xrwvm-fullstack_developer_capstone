@@ -6,9 +6,33 @@ from .models import Dealer
 from .serializers import DealerSerializer
 
 class DealerListView(generics.ListAPIView):
-    """API view to retrieve all dealers"""
+    """API view to retrieve all dealers with required fields"""
     queryset = Dealer.objects.all()
-    serializer_class = DealerSerializer
+    
+    def list(self, request, *args, **kwargs):
+        dealers = self.get_queryset()
+        formatted_dealers = []
+        
+        for dealer in dealers:
+            formatted_dealer = {
+                'id': dealer.id,
+                'name': dealer.name,
+                'full_name': dealer.name,  # Add full_name field
+                'city': dealer.city,
+                'state': dealer.state,
+                'address': dealer.address,
+                'zip_code': dealer.zip_code,
+                'phone': dealer.phone,
+                'email': dealer.email,
+                'website': dealer.website,
+                'latitude': dealer.latitude,
+                'longitude': dealer.longitude,
+                'created_at': dealer.created_at,
+                'updated_at': dealer.updated_at
+            }
+            formatted_dealers.append(formatted_dealer)
+        
+        return Response(formatted_dealers)
 
 class DealerDetailView(generics.RetrieveAPIView):
     """API view to retrieve a specific dealer by ID"""
@@ -39,8 +63,8 @@ def fetch_dealer_by_id(request, dealer_id):
         'phone': dealer.phone,
         'email': dealer.email,
         'website': dealer.website,
-        'latitude': dealer.latitude,
-        'longitude': dealer.longitude
+        'lat': dealer.latitude,
+        'long': dealer.longitude
     }
     
     return Response(formatted_dealer)

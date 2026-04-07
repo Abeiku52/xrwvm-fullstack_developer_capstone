@@ -1,41 +1,5 @@
-cURL command to get dealers by state (Kansas):
+cURL Command:
+curl -X GET http://127.0.0.1:8000/api/dealers/state/Kansas/
 
-$ curl -X GET http://127.0.0.1:8000/api/dealers/state/Kansas/ \
-  -H "Content-Type: application/json"
-
-Response:
-[
-  {
-    "id": 1,
-    "name": "Premium Auto Kansas City",
-    "city": "Kansas City",
-    "state": "Kansas",
-    "address": "1234 Auto Plaza Drive, Kansas City, KS 66101",
-    "zip_code": "66101",
-    "phone": "(913) 555-0123",
-    "email": "info@premiumautokc.com",
-    "website": "https://www.premiumautokc.com",
-    "latitude": "39.114053",
-    "longitude": "-94.627464",
-    "created_at": "2024-01-15T09:00:00Z",
-    "updated_at": "2024-04-01T12:00:00Z"
-  },
-  {
-    "id": 2,
-    "name": "Elite Motors Wichita",
-    "city": "Wichita",
-    "state": "Kansas",
-    "address": "5678 Commerce Street, Wichita, KS 67202",
-    "zip_code": "67202",
-    "phone": "(316) 555-0456",
-    "email": "sales@elitemotorswichita.com",
-    "website": "https://www.elitemotorswichita.com",
-    "latitude": "37.687176",
-    "longitude": "-97.330053",
-    "created_at": "2024-01-20T10:30:00Z",
-    "updated_at": "2024-04-01T12:00:00Z"
-  }
-]
-
-HTTP Status: 200 OK
-Total dealers in Kansas: 2
+Output:
+[{"id":2,"name":"Elite Motors Wichita","city":"Wichita","state":"Kansas","address":"5678 Commerce Street, Wichita, KS 67202","zip_code":"67202","phone":"(316) 555-0456","email":"sales@elitemotorswichita.com","website":"https://www.elitemotorswichita.com","latitude":"37.687176","longitude":"-97.330053","created_at":"2026-04-06T11:50:18.746655Z","updated_at":"2026-04-06T11:50:18.746663Z"},{"id":1,"name":"Premium Auto Kansas City","city":"Kansas City","state":"Kansas","address":"1234 Auto Plaza Drive, Kansas City, KS 66101","zip_code":"66101","phone":"(913) 555-0123","email":"info@premiumautokc.com","website":"https://www.premiumautokc.com","latitude":"39.114053","longitude":"-94.627464","created_at":"2026-04-06T11:50:18.745587Z","updated_at":"2026-04-06T11:50:18.745603Z"}]

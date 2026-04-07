@@ -1,8 +1,10 @@
-# Car Dealership - Full Stack Capstone Project
+# fullstack_developer_capstone
 
 A comprehensive full-stack web application for a car dealership built with Django, React components, and modern web technologies.
 
 ## 🚀 Project Overview
+
+**Project Name**: fullstack_developer_capstone
 
 This is a capstone project for a national car retailer that provides a responsive web application allowing users to:
 - Browse dealership branches across different states
@@ -59,8 +61,8 @@ car-dealership/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Abeiku52/car-dealership.git
-   cd car-dealership
+   git clone https://github.com/Abeiku52/xrwvm-fullstack_developer_capstone.git
+   cd xrwvm-fullstack_developer_capstone
    ```
 
 2. **Install dependencies**
@@ -201,7 +203,8 @@ This project is part of a capstone program and is for educational purposes.
 
 **Abeiku52**
 - GitHub: [@Abeiku52](https://github.com/Abeiku52)
-- Project: Car Dealership Capstone
+- Project: xrwvm-fullstack_developer_capstone
+- Repository: https://github.com/Abeiku52/xrwvm-fullstack_developer_capstone
 
 ## 🙏 Acknowledgments
 

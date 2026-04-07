@@ -70,10 +70,12 @@ function displayDealers(dealers) {
         <div class="dealer-card" data-state="${dealer.state}">
             <div class="dealer-header">
                 <h3>${dealer.name}</h3>
+                <div class="dealer-id">ID: ${dealer.id}</div>
                 <span class="dealer-location">${dealer.city}, ${dealer.state}</span>
             </div>
             <div class="dealer-info">
                 <p><i class="fas fa-map-marker-alt"></i> ${dealer.address}</p>
+                <p><i class="fas fa-mail-bulk"></i> ZIP: ${dealer.zip_code}</p>
                 <p><i class="fas fa-phone"></i> ${dealer.phone}</p>
                 <p><i class="fas fa-envelope"></i> ${dealer.email}</p>
             </div>
